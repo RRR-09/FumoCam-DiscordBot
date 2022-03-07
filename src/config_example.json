@@ -6,13 +6,15 @@
   "custom_invite_messages": {
     "ABCdefg12h": "custom invite 1"
   },
+
   "discord_bot_owner_id": 123456789012345678,
   "discord_guild_id": 123456789012345678,
   "discord_channel_ids": {
     "admin": 123456789012345678,
     "bot_commands": 123456789012345678,
     "leaving": 123456789012345678,
-    "staff": 123456789012345678,
+    "suggestions": 123456789012345678,
+    "suggestions-discussion": 123456789012345678,
     "welcome": 123456789012345678
   },
   "discord_role_ids": {
@@ -21,12 +23,25 @@
     "member": 123456789012345678,
     "guest": 123456789012345678
   },
+
   "leave_channel": "leaving",
   "leave_message": "> {member_name} has left the server.",
+
   "media_rate_channels": ["memes", "pics"],
   "media_rate_downvote": "👎",
   "media_rate_upvote": "👍",
+
   "message_log": false,
+
+  "suggestions_cancel": "❌",
+  "suggestions_confirmation_format": "Your suggestion has been added.\nYou can undo this by pressing {cancel_emoji} in the next 30 seconds.",
+  "suggestions_channel": "suggestions",
+  "suggestions_deleted_format": "Your suggestion has been deleted.",
+  "suggestions_downvote": "👎",
+  "suggestions_format": "** **\n** **\n__**SUGGESTION FROM {author}:**__\n{suggestion}\n** **\n** **",
+  "suggestions_human_channel": "suggestions-discussion",
+  "suggestions_upvote": "👍",
+
   "watchdog": {
     "bot_vars": {
       "directory": "$HOME/discord_bots/bot_name/src",

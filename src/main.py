@@ -9,6 +9,7 @@ from cogs.invite_check import InviteCheck as InviteCheckCog
 from cogs.leave_message import LeaveMessage as LeaveMessageCog
 from cogs.media_rate import MediaRate as MediaRateCog
 from cogs.message_logging import MessageLogging as MessageLoggingCog
+from cogs.suggestions import Suggestions as SuggestionsCog
 
 global bot
 bot = utils.BotClass()
@@ -49,6 +50,7 @@ async def post_init():
     bot.client.add_cog(MessageLoggingCog(bot))
     bot.client.add_cog(MediaRateCog(bot))
     bot.client.add_cog(LeaveMessageCog(bot))
+    bot.client.add_cog(SuggestionsCog(bot))
 
 
 async def config():
