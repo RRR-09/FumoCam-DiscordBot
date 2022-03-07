@@ -1,3 +1,4 @@
+from asyncio import sleep as async_sleep
 from mimetypes import guess_type
 from re import compile as regex_compile
 
@@ -77,5 +78,8 @@ class MediaRate(commands.Cog):
         if not has_media:
             return
 
+        # Sleep required, sometimes goes too fast and only one emoji shows to the poster (but fine for everyone else)
+        async_sleep(0.25)
         await message.add_reaction(self.upvote_emoji)
+        async_sleep(0.25)
         await message.add_reaction(self.downvote_emoji)
