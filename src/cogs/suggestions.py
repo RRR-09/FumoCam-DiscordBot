@@ -13,20 +13,21 @@ class Suggestions(commands.Cog):
     def __init__(self, bot: BotClass):
         self.bot = bot
 
+        # Bot channel
         self.suggestions_channel_name = self.bot.CFG.get("suggestions_channel")
         if self.suggestions_channel_name is None:
             print(
                 "['suggestions_channel' not specified in config, disabling suggestions subroutine]"
             )
             return
-
-        self.suggestions_channel = self.bot.channels.get(self.suggestions_channel_name)
-        if self.suggestions_channel is None:
+        if self.suggestions_channel_name not in self.bot.channels:
             print(
                 f"['{self.suggestions_channel_name}' not found, disabling suggestions subroutine]"
             )
             return
+        self.suggestions_channel = self.bot.channels[self.suggestions_channel_name]
 
+        # Human Channel
         self.suggestions_human_channel_name = self.bot.CFG.get(
             "suggestions_human_channel"
         )
@@ -36,15 +37,16 @@ class Suggestions(commands.Cog):
             )
             return
 
-        self.suggestions_human_channel = self.bot.channels.get(
-            self.suggestions_human_channel_name
-        )
-        if self.suggestions_human_channel is None:
+        if self.suggestions_human_channel_name not in self.bot.channels:
             print(
                 f"['{self.suggestions_channel_name}' not found, disabling suggestions subroutine]"
             )
             return
+        self.suggestions_human_channel = self.bot.channels[
+            self.suggestions_human_channel_name
+        ]
 
+        # Other config options
         self.cancel = self.bot.CFG.get("suggestions_cancel", "❌")
         self.confirmation_format = self.bot.CFG.get(
             "suggestions_confirmation_format",
@@ -60,10 +62,12 @@ class Suggestions(commands.Cog):
             "** **\n** **\n__**SUGGESTION FROM {author}:**__\n{suggestion}\n** **\n** **",
         )
         self.upvote = self.bot.CFG.get("suggestions_upvote", "👍")
+        self.ready = True
 
     @commands.Cog.listener()
     async def on_message(self, message: nextcord.Message):
-
+        if not self.ready:
+            return
         if message.channel.id != self.suggestions_human_channel.id:
             return
         if not message.content.startswith(self.prefix):
