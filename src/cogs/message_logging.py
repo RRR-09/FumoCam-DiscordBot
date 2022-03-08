@@ -24,7 +24,11 @@ class MessageLogging(commands.Cog):
             self.disabled = True
             return
         self.loading = True
-        self.db_path = Path.cwd() / "data" / "message_log.sqlite"
+
+        db_folder = Path.cwd() / "data"
+        Path(db_folder).mkdir(parents=True, exist_ok=True)
+        self.db_path = db_folder / "message_log.sqlite"
+
         self.message_buffer: List[MessageColumnsType] = []
         self.message_buffer_not_empty = False
         self.setup_db()
