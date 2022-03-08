@@ -15,12 +15,12 @@ class LeaveMessage(commands.Cog):
             )
             return
 
-        self.leave_channel = self.bot.channels.get(self.leave_channel_name)
-        if self.leave_channel is None:
+        if self.leave_channel_name not in self.bot.channels:
             print(
                 f"['{self.leave_channel_name}' not found, disabling leave-message subroutine]"
             )
             return
+        self.leave_channel = self.bot.channels[self.leave_channel_name]
 
         self.leave_message = self.bot.CFG.get(
             "leave_message", "> {member_name} has left the server."
