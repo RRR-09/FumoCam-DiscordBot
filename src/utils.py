@@ -5,6 +5,7 @@ from json import load as load_json
 from math import floor
 from typing import Any, Dict, List, TextIO, Tuple, Union
 
+import nextcord
 from nextcord import Guild as DiscordGuild
 from nextcord import Intents as DiscordIntents
 from nextcord import Message as DiscordMessage
@@ -92,6 +93,14 @@ def log_error(error: str):
             error_message = f"[{get_est_time()}] WARNING: Failed to find existing error log. Writing to new.\n\n{error}"
             error_log.write(error_message)
     do_log(error_message)
+
+
+async def try_delete_message(message: DiscordMessage):
+    try:
+        await message.delete()
+        return True
+    except Exception:
+        return False
 
 
 def json_eval_object_pairs_hook(ordered_pairs: List[Tuple[Any, Any]]) -> Dict:

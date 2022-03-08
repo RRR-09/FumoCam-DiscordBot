@@ -6,7 +6,7 @@ from traceback import format_exc
 import nextcord
 from nextcord.ext import commands  # type: ignore
 
-from utils import BotClass, log_error
+from utils import BotClass, log_error, try_delete_message
 
 
 class Suggestions(commands.Cog):
@@ -112,13 +112,13 @@ class Suggestions(commands.Cog):
                 "reaction_add", timeout=30.0, check=cancel_suggestion_react_check
             )
         except TimeoutError:
-            await message.delete()
-            await confirmation.delete()
+            await try_delete_message(message)
+            await try_delete_message(confirmation)
         else:
-            await suggestion.delete()
-            await confirmation.delete()
+            await try_delete_message(suggestion)
+            await try_delete_message(confirmation)
             deleted_confirmation = await self.suggestions_human_channel.send(
                 "Your suggestion has been deleted."
             )
             await async_sleep(5)
-            await deleted_confirmation.delete()
+            await try_delete_message(deleted_confirmation)
