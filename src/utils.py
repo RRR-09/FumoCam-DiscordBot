@@ -5,7 +5,6 @@ from json import load as load_json
 from math import floor
 from typing import Any, Dict, List, TextIO, Tuple, Union
 
-import nextcord
 from nextcord import Guild as DiscordGuild
 from nextcord import Intents as DiscordIntents
 from nextcord import Message as DiscordMessage
@@ -24,6 +23,7 @@ class BotClass:
         intents.guilds = True
         intents.messages = True
         intents.invites = True
+        intents.voice_states = True
 
         self.client = DiscordBot(command_prefix="/", intents=intents)
         self.logger = logging.getLogger("nextcord")

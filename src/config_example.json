@@ -42,6 +42,13 @@
   "suggestions_human_channel": "suggestions-discussion",
   "suggestions_upvote": "👍",
 
+  "voice_channels_category_id": 123456789012345678,
+  "voice_channels_active_pos": 3,
+  "voice_channels_inactive_pos": 4,
+  "voice_chat_indictor_category_id": 123456789012345678,
+  "voice_chat_indicator_id": 123456789012345678,
+  "voice_chat_indicator_format": "❗🗣 VC Users: {vc_user_count}",
+
   "watchdog": {
     "bot_vars": {
       "directory": "$HOME/discord_bots/bot_name/src",
