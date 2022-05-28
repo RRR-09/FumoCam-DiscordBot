@@ -5,6 +5,7 @@ import nextcord
 from dotenv import load_dotenv
 
 import utils
+from cogs.fun import Fun as FunCog
 from cogs.invite_check import InviteCheck as InviteCheckCog
 from cogs.leave_message import LeaveMessage as LeaveMessageCog
 from cogs.media_rate import MediaRate as MediaRateCog
@@ -53,6 +54,7 @@ async def post_init():
     bot.client.add_cog(LeaveMessageCog(bot))
     bot.client.add_cog(SuggestionsCog(bot))
     bot.client.add_cog(VoiceChannelHoistCog(bot))
+    bot.client.add_cog(FunCog(bot))
 
 
 async def config():
